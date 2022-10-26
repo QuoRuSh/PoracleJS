@@ -352,6 +352,9 @@ class Raid extends Controller {
 							require('./common/evolutionCalculator').setEvolutions(data, this.GameData, this.log, logReference, translator, this.emojiLookup, platform, monster)
 							require('./common/weather').setNextWeatherText(data, translator, this.GameData, this.emojiLookup, platform)
 
+							/* boostedNext to know when the weather changes and the next weather is will boost the pokemon in raids */
+							if ( data.weatherChange ) data.boostedNext = !!data.boostingWeathers.includes(data.weatherNext)
+							
 							/* Weakness calculations */
 
 							const typeInfo = this.GameData.types
